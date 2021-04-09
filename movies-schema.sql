@@ -1,9 +1,9 @@
 CREATE TABLE bechdel_movies (
-    year INTEGER NOT NULL,
-  id INTEGER NOT NULL,
-  imdb_id INTEGER NOT NULL,
+  yr TEXT NOT NULL,
+  id TEXT NOT NULL,
+  imdb_id TEXT NOT NULL,
   title TEXT NOT NULL,
-  rating INTEGER NOT NULL
+  rating TEXT NOT NULL
 );
 
 CREATE TABLE users (
