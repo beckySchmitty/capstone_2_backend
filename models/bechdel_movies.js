@@ -11,4 +11,4 @@
 
 const db = require("../db");
 
-class bechdel 
+class bechdel {}
