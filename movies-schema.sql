@@ -21,3 +21,11 @@ CREATE TABLE watchlist (
     movie_id TEXT REFERENCES bechdel_movies (id),
     imdb_id TEXT REFERENCES bechdel_movies (imdb_id)
 )
+
+CREATE TABLE omdb_movies (
+  imdb_id TEXT NOT NULL,
+  poster TEXT NOT NULL,
+  plot TEXT NOT NULL,
+  director TEXT NOT NULL,
+  awards TEXT NOT NULL
+)

@@ -3,15 +3,23 @@
 // Express app for capstone_2 backend
 
 const express = require("express");
+const { NotFoundError } = require("./expressError");
 
+
+const bechdelRoutes = require("./routes/bechdel_movies");
 const app = express();
+
+app.use(express.json());
+
+app.use("/bechdel", bechdelRoutes)
+
+
+
 
 // require jwt
 
 // REQUIRE routes
 // app.use("/thing", thingRoute)
-
-// create NotFoundError
 
 
 // Handle 404 errors
