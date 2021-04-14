@@ -17,6 +17,9 @@ class Bechdel {
         // testing get method
     static async getMovieByTitle(term) {
         const resp = await db.query(`SELECT * FROM bechdel_movies WHERE title = $1`, [term])
+        if (resp.rows.length === 0) {
+            return [{ERROR: `Movie "${term}" not found`}]
+        }
         return resp.rows;
     }
 
