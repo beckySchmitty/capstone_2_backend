@@ -10,6 +10,20 @@ const Bechdel = require("../models/Bechdel");
 
 const router = new express.Router();
 
+router.get("/title/:term", async function (req, res, next) {
+  try {
+      const data = await Bechdel.getMovieByTitle(req.params.term);
+      return res.json({ data });
+  }
+
+  catch (err) {
+    return next(err);
+  }
+});
+
+
+
+
 router.get("/testing", async function (req, res, next) {
     // add in validator 
 

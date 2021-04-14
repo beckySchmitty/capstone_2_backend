@@ -14,6 +14,12 @@ const db = require("../db");
 class Bechdel {
     // insert class overview
 
+        // testing get method
+    static async getMovieByTitle(term) {
+        const resp = await db.query(`SELECT * FROM bechdel_movies WHERE title = $1`, [term])
+        return resp.rows;
+    }
+
     // testing get method
     static async getAll2020Movies() {
         const resp = await db.query(`SELECT * FROM bechdel_movies WHERE yr = $1`, ['2020'])

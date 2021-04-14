@@ -3,14 +3,15 @@
 // Express app for capstone_2 backend
 
 const express = require("express");
-const { NotFoundError } = require("./expressError");
+const cors = require('cors')
 
+const { NotFoundError } = require("./expressError");
 
 const bechdelRoutes = require("./routes/bechdel_movies");
 const app = express();
 
+app.use(cors())
 app.use(express.json());
-
 app.use("/bechdel", bechdelRoutes)
 
 
