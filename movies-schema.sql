@@ -7,7 +7,7 @@ CREATE TABLE bechdel_movies (
 );
 
 CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
+  id TEXT NOT NULL,
   username VARCHAR(25) PRIMARY KEY,
   password TEXT NOT NULL,
   email TEXT NOT NULL

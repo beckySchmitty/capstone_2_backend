@@ -8,11 +8,13 @@ const cors = require('cors')
 const { NotFoundError } = require("./expressError");
 
 const bechdelRoutes = require("./routes/bechdel_movies");
+const userRoutes = require("./routes/user")
 const app = express();
 
 app.use(cors())
 app.use(express.json());
 app.use("/bechdel", bechdelRoutes)
+app.use("/user", userRoutes)
 
 
 
