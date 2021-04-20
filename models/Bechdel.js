@@ -15,9 +15,9 @@ class Bechdel {
     // insert class overview
 
         // testing get method
-    static async getMovieByTitle(term) {
+    static async getMoviesByTitle(term) {
         // update to protect against SQL injection
-        const resp = await db.query(`SELECT * FROM bechdel_movies WHERE title ILIKE '%${term}%'`)
+        const resp = await db.query(`SELECT * FROM bechdel_movies WHERE title ILIKE '%${term}%' ORDER BY yr DESC`)
         if (resp.rows.length === 0) {
             return [{ERROR: `Movie "${term}" not found`}]
         }
@@ -25,19 +25,10 @@ class Bechdel {
     }
 
     // testing get method
-    static async getAll2020Movies() {
-        const resp = await db.query(`SELECT * FROM bechdel_movies WHERE yr = $1`, ['2020'])
+    static async getMoviesByYear(year) {
+        const resp = await db.query(`SELECT * FROM bechdel_movies WHERE yr = $1`, [year])
         return resp.rows;
     }
 }
 
 module.exports = Bechdel;
-
-        // testing get method
-        // static async getMovieByTitle(term) {
-        //     const resp = await db.query(`SELECT * FROM bechdel_movies WHERE title = $1`, [term])
-        //     if (resp.rows.length === 0) {
-        //         return [{ERROR: `Movie "${term}" not found`}]
-        //     }
-        //     return resp.rows;
-        // }

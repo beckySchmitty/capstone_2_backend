@@ -12,7 +12,18 @@ const router = new express.Router();
 
 router.get("/title/:term", async function (req, res, next) {
   try {
-      const data = await Bechdel.getMovieByTitle(req.params.term);
+      const data = await Bechdel.getMoviesByTitle(req.params.term);
+      return res.json({ data });
+  }
+
+  catch (err) {
+    return next(err);
+  }
+});
+
+router.get("/year/:year", async function (req, res, next) {
+  try {
+      const data = await Bechdel.getMoviesByYear(req.params.year);
       return res.json({ data });
   }
 
@@ -22,8 +33,6 @@ router.get("/title/:term", async function (req, res, next) {
 });
 
 
-
-
 router.get("/testing", async function (req, res, next) {
     // add in validator 
 
@@ -31,16 +40,5 @@ router.get("/testing", async function (req, res, next) {
 
   });
 
-router.get("/all", async function (req, res, next) {
-    // add in validator 
-    try {
-        const data = await Bechdel.getAll2020Movies();
-        return res.json({ data });
-    }
-  
-    catch (err) {
-      return next(err);
-    }
-  });
 
 module.exports = router;
