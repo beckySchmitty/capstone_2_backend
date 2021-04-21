@@ -17,7 +17,7 @@ class Bechdel {
         // testing get method
     static async getMoviesByTitle(term) {
         // update to protect against SQL injection
-        const resp = await db.query(`SELECT * FROM bechdel_movies WHERE title ILIKE '%${term}%' ORDER BY yr DESC`)
+        const resp = await db.query(`SELECT * FROM bechdel_movies WHERE title ILIKE '%${term}%' `)
         if (resp.rows.length === 0) {
             return [{ERROR: `Movie "${term}" not found`}]
         }

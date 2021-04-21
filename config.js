@@ -17,7 +17,8 @@ function getDatabaseUri() {
 }
 
 // small workfactor if testing or else normal
-const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
+// const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
+const BCRYPT_WORK_FACTOR = 4;
 
 console.log("PORT:".yellow, PORT.toString());
 console.log("Database:".yellow, getDatabaseUri());
