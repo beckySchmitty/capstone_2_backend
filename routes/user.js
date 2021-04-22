@@ -14,6 +14,7 @@ router.get('/hi', (req, res, next) => {
 // {username, password, email, img_url} => token
 router.post('/register', async (req, res, next) => {
   try {
+    console.log(`@@@@@@@@@@ REQ BODY ${JSON.stringify(req)}`)
     let {username, password, email, img_url} = req.body;
     const user = await User.register({username, password, email, img_url})
 
