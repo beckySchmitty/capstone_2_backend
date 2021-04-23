@@ -14,7 +14,6 @@ router.get('/hi', (req, res, next) => {
 // {username, password, email, img_url} => token
 router.post('/register', async (req, res, next) => {
   try {
-    console.log(req)
     let {username, password, email, img_url} = req.body;
     const user = await User.register({username, password, email, img_url})
 
@@ -22,7 +21,7 @@ router.post('/register', async (req, res, next) => {
       const token = jwt.sign({username}, SECRET_KEY);
       return res.json({token})
     } else {
-      throw new ExpressError("Error: user not created", 400)
+      throw new ExpressError("Error: user not created", 400);
     }
   } catch(e) {
     return next(e)
@@ -34,11 +33,11 @@ router.post('/register', async (req, res, next) => {
 router.post('/login', async (req, res, next) => {
     try {
       let {username, password} = req.body;
-      if(await User.authenticate(username, password)) {
+      if (await User.authenticate(username, password)) {
         const token = jwt.sign({username}, SECRET_KEY);
         return res.json({token})
       } else 
-        throw new ExpressError("Invalid username/passwrd", 400);
+        throw new Error("Error: Invalid username/password", 400);
     } catch(e) {
       return next(e)
     }

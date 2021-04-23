@@ -50,6 +50,15 @@ class User {
     return user;
   }
 
+  // add static for adding omdb data to omdb table
+
+  static async addToWatchlist(user_id, imdb_id) {
+    // add data to watchlist
+
+    return user;
+  }
+
+
 }
 
 

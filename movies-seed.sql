@@ -18,6 +18,14 @@ VALUES (
     9999,
     'Fake Movie Title',
     3
-)
+);
+
+INSERT INTO omdb_movies (imdb_id, title, poster, plot, director, bechdel_rating)
+VALUES ('f000', 'fakeMovie', '#', 'Interesting plot', 'Mr. Director', '1'),
+('f002', 'anotherMovie', '#', 'random plot', 'Ms. Director', '3');
+
+
+INSERT INTO watchlist (user_id, imdb_id)
+VALUES ('01', 'f000'), ('01', 'f002');
 
 

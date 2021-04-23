@@ -7,25 +7,26 @@ CREATE TABLE bechdel_movies (
 );
 
 CREATE TABLE users (
-  id TEXT NOT NULL,
-  username VARCHAR(25) PRIMARY KEY,
+  id TEXT PRIMARY KEY,
+  username TEXT NOT NULL,
   password TEXT NOT NULL,
   email TEXT NOT NULL
     CHECK (position('@' IN email) > 1),
   img_url TEXT
 );
 
-CREATE TABLE watchlist (
-    id SERIAL PRIMARY KEY,
-    userid INTEGER REFERENCES users (id),
-    movie_id TEXT REFERENCES bechdel_movies (id),
-    imdb_id TEXT REFERENCES bechdel_movies (imdb_id)
-)
-
 CREATE TABLE omdb_movies (
-  imdb_id TEXT NOT NULL,
+  imdb_id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
   poster TEXT NOT NULL,
   plot TEXT NOT NULL,
   director TEXT NOT NULL,
-  awards TEXT NOT NULL
+  bechdel_rating TEXT NOT NULL
+);
+
+CREATE TABLE watchlist (
+    id SERIAL PRIMARY KEY,
+    user_id TEXT REFERENCES users (id) ON DELETE CASCADE,
+    imdb_id TEXT REFERENCES omdb_movies ON DELETE CASCADE
 )
+
