@@ -37,7 +37,7 @@ class User {
 
   static async get(username) {
     const userRes = await db.query(
-          `SELECT id, username, email, img_url
+          `SELECT id, username, img_url
            FROM users
            WHERE username = $1`,
         [username],
