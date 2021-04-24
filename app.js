@@ -9,6 +9,8 @@ const { NotFoundError } = require("./expressError");
 
 const bechdelRoutes = require("./routes/bechdel_movies");
 const userRoutes = require("./routes/user")
+const omdbRoutes = require("./routes/OMDB_movies")
+
 const app = express();
 
 app.use(cors())
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use("/bechdel", bechdelRoutes)
 app.use("/user", userRoutes)
+app.use("/omdb", omdbRoutes)
+
 
 
 
