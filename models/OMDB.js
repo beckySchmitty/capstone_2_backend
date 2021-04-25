@@ -22,6 +22,24 @@ class OMDB {
         return resp.rows;
     }
 
+    static async addToWatchlist({imdb_id, user_id}) {
+        let formattedImdb_id = "tt0" + imdb_id
+        const checkIfAlreadySaved = await db.query(`SELECT * FROM watchlist 
+        WHERE imdb_id = $1`, [formattedImdb_id])
+
+        if (checkIfAlreadySaved.rowCount == 1) {
+            return {ERROR: "already saved"}
+        } 
+
+        const resp = await db.query(`INSERT INTO watchlist 
+        (user_id, imdb_id)
+        VALUES ($1, $2)
+        RETURNING user_id, imdb_id`,
+        [user_id, formattedImdb_id]);
+
+        return resp.rows;
+    }
+
 }
 
 module.exports = OMDB;

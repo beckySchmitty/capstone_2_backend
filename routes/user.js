@@ -43,6 +43,19 @@ router.post('/login', async (req, res, next) => {
     }
   })
 
+  // GET data from user's watchlist 
+router.post('/watchlist', async (req, res, next) => {
+    try {
+        let {user_id} = req.body;
+        const data = await User.getWatchlist(user_id);
+        return res.json({data});
+    }
+  
+    catch (err) {
+        return next(err);
+    }
+  });
+
 
 // GET username
 // => {user}
@@ -55,6 +68,8 @@ router.post('/login', async (req, res, next) => {
     return next(err);
   }
 });
+
+
 
 
  module.exports = router;

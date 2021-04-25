@@ -9,6 +9,7 @@ const OMDB = require("../models/OMDB");
 
 const router = new express.Router();
 
+// Save OMDB data to omdb_movies table
 router.post("/add", async function (req, res, next) {
   try {
       const data = await OMDB.addToDatabase(req.body);
@@ -22,6 +23,19 @@ router.post("/add", async function (req, res, next) {
       return next(err);
   }
 });
+
+// save data to watchlist table
+router.post("/add/watchlist", async function (req, res, next) {
+    try {
+        const data = await OMDB.addToWatchlist(req.body);
+
+        return res.json({data});
+    }
+  
+    catch (err) {
+        return next(err);
+    }
+  });
 
 
 

@@ -52,10 +52,14 @@ class User {
 
   // add static for adding omdb data to omdb table
 
-  static async addToWatchlist(user_id, imdb_id) {
-    // add data to watchlist
+  static async getWatchlist(user_id) {
+    const resp = await db.query(`SELECT * FROM omdb_movies 
+    JOIN watchlist ON 
+    omdb_movies.imdb_id = watchlist.imdb_id 
+    WHERE user_id = $1;
+    `, [user_id])
 
-    return user;
+    return resp;
   }
 
 

@@ -28,4 +28,4 @@ VALUES ('f000', 'fakeMovie', '#', 'Interesting plot', 'Mr. Director', '1'),
 INSERT INTO watchlist (user_id, imdb_id)
 VALUES ('01', 'f000'), ('01', 'f002');
 
-
+-- SELECT * FROM omdb_movies JOIN watchlist ON omdb_movies.imdb_id = watchlist.imdb_id WHERE user_id ='0dab4946-084a-43bd-b022-52ce4785b554';
