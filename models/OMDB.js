@@ -12,14 +12,15 @@ class OMDB {
         if (checkIfAlreadySaved.rowCount == 1) {
             return {msg: "already saved"}
         } 
-
+        
+        console.log(`############### ${imdbID, Title, Poster, Plot, Director, bechdel_rating}`)
         const resp = await db.query(`INSERT INTO omdb_movies 
         (imdb_id, title, poster, plot, director, bechdel_rating)
         VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING imdb_id, title, poster, plot, director, bechdel_rating`,
         [imdbID, Title, Poster, Plot, Director, bechdel_rating]);
 
-        return resp.rows;
+        return resp.rows[0];
     }
 
     static async addToWatchlist({imdb_id, user_id}) {
@@ -37,7 +38,7 @@ class OMDB {
         RETURNING user_id, imdb_id`,
         [user_id, formattedImdb_id]);
 
-        return resp.rows;
+        return resp.rows[0];
     }
 
 }

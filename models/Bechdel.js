@@ -14,9 +14,7 @@ const db = require("../db");
 class Bechdel {
     // insert class overview
 
-        // testing get method
     static async getMoviesByTitle(term) {
-        // update to protect against SQL injection
         const resp = await db.query(`SELECT * FROM bechdel_movies WHERE title ILIKE '%${term}%' `)
         if (resp.rows.length === 0) {
             return [{ERROR: `Movie "${term}" not found`}]
@@ -24,7 +22,7 @@ class Bechdel {
         return resp.rows;
     }
 
-    // testing get method
+    // may not use this
     static async getMoviesByYear(year) {
         const resp = await db.query(`SELECT * FROM bechdel_movies WHERE yr = $1`, [year])
         return resp.rows;
