@@ -12,9 +12,7 @@ class OMDB {
         if (checkIfAlreadySaved.rowCount == 1) {
             return {msg: "already saved"}
         } 
-        
-        console.log(`############### ${imdbID, Title, Poster, Plot, Director, bechdel_rating}`)
-        const resp = await db.query(`INSERT INTO omdb_movies 
+                const resp = await db.query(`INSERT INTO omdb_movies 
         (imdb_id, title, poster, plot, director, bechdel_rating)
         VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING imdb_id, title, poster, plot, director, bechdel_rating`,
