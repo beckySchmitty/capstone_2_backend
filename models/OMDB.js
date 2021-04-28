@@ -39,6 +39,18 @@ class OMDB {
         return resp.rows[0];
     }
 
+    static async removeFromWatchlist({imdb_id, user_id}) {
+
+        const resp = await db.query(`DELETE FROM watchlist
+        WHERE user_id = $1
+        AND
+        imdb_id = $2
+        RETURNING user_id, imdb_id;`,
+        [user_id, imdb_id]);
+
+        return resp.rows[0];
+    }
+
 }
 
 module.exports = OMDB;

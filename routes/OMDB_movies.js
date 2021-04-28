@@ -37,6 +37,19 @@ router.post("/add/watchlist", async function (req, res, next) {
     }
   });
 
+// remove data from watchlist table
+router.post("/remove/watchlist", async function (req, res, next) {
+    try {
+        const data = await OMDB.removeFromWatchlist(req.body);
+
+        return res.json({data});
+    }
+  
+    catch (err) {
+        return next(err);
+    }
+  });
+
 
 
 module.exports = router;
