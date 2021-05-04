@@ -1,7 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+const User = require("../models/User");
 const {SECRET_KEY } = require("../config");
 const ExpressError = require("../expressError");
 
